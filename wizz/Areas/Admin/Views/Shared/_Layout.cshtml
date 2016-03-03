@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @{
+
+    //System.Web.Mvc.ActionExecutingContext filterContext;
+    }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <link href="~/Scripts/jquery.mCustomScrollbar.css" rel="stylesheet" />
+    @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+    @System.Web.Optimization.Styles.Render("~/Content1/css")
+    <script src="~/Scripts/jquery.mCustomScrollbar.concat.min.js"></script>
+    <link rel="icon" href="~/Images/sitefacivon.png">
+
+    <!-- Angular Material Javascript using GitCDN to load directly from `bower-material/master` -->
+    
+</head>
+<body ng-app="myApp">
+    <header class="clearfix">
+        
+        <div class="logo pull-left">
+            <img src="~/images/logo.png" alt="" />
+        </div>
+        <div class="admin-tool pull-right clearfix">
+            @*<i class="icon-search"></i>
+            <i class="icon-systemmessage"></i>
+            <i class="icon-notifications">
+                <span class="aler-count"></span>
+            </i>*@
+            <div class="user-name">
+                <span class="name">ADMIN</span>
+               <span class="icon-chevron-down"></span>
+                <div class="overlay-popUp"></div>
+                <ul class="user-menu">
+                    @*<li><a href="#">Settings</a></li>*@
+                    <li><a href="@Url.Action("ChangePassword","Home")" onclick="LoaderStart()"><i class="icon-admin"></i> <span>Change Password</span></a></li>
+                    <li><a href="@Url.Action("Logout","Home")" onclick="LoaderStart()"><i class="icon-log-out"></i> <span>Log out</span></a></li>
+                </ul>
+            </div>
+
+
+            @*<div  class="user-img circle"><img src="/images/user-img.jpg" alt=" "></div>*@
+           
+        </div>
+    </header>
+
+    <aside>
+        <nav class="mCustomScrollbar">
+            <ul>
+
+                <li @if (ViewContext.RouteData.Values["action"].ToString().ToLower() == "dashboard") { @: class="active"
+                                                                                                                                                        }>
+                    <a href="@Url.Action("Dashboard", "Home")">
+                        <i class="icon-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                @*<li>
+                    <a href="#">
+                        <i class="icon-registration"></i>
+                        <span>Registrations</span>
+                        <em class="icon-chevron-right"></em>
+                    </a>
+                </li>*@
+                <li @if (ViewContext.RouteData.Values["action"].ToString().ToLower() == "usermanagement") { @: class="active"
+                                                                                                                                                        }>
+                    <a href="@Url.Action("UserManagement", "Home")">
+                        <i class="icon-user-management"></i>
+                        <span>Users</span>
+                        <em class="icon-chevron-right"></em>
+                    </a>
+                </li>
+                <li @if (ViewContext.RouteData.Values["action"].ToString().ToLower() == "tutormanagement") { @: class="active"
+                                                                                                                                                                            }>
+                    <a href="@Url.Action("TutorManagement", "Home")">
+                        <i class="icon-user-management"></i>
+                        <span>Tutors</span>
+                        <em class="icon-chevron-right"></em>
+                    </a>
+                </li>
+
+
+                <li @if (ViewContext.RouteData.Values["action"].ToString().ToLower() == "promocodemanagement") { @: class="active"
+                                                                                                                                    }>
+                    <a href="@Url.Action("PromoCodeManagement", "Home")">
+                        <i class="icon-coupons"></i>
+                        <span>PromoCode</span>
+                        <em class="icon-chevron-right"></em>
+                    </a>
+                </li>
+
+                <li @if (ViewContext.RouteData.Values["action"].ToString().ToLower() == "settings") { @: class="active"
+                                                                                                                                                        }>
+                    <a href="@Url.Action("Settings", "Home")">
+                        <i class="icon-setting"></i>
+                        <span>Settings</span>
+                        <em class="icon-chevron-right"></em>
+                    </a>
+                </li>
+                <li @if (ViewContext.RouteData.Values["action"].ToString().ToLower() == "courses") { @: class="active"
+                                                                                                                                                                            }>
+                    <a href="@Url.Action("Courses", "Home")">
+                        <i class="icon-class"></i>
+                        <span>Subjects</span>
+                        <em class="icon-chevron-right"></em>
+                    </a>
+                </li>
+                <li @if (ViewContext.RouteData.Values["action"].ToString().ToLower() == "collegemanagement") { @: class="active"
+                                                                                                                                                                                                                    }>
+                    <a href="@Url.Action("CollegeManagement", "Home")">
+                        <i class="icon-class"></i>
+                        <span>College</span>
+                        <em class="icon-chevron-right"></em>
+                    </a>
+                </li>
+
+                <li @if (ViewContext.RouteData.Values["action"].ToString().ToLower() == "majorsmanagement") { @: class="active"
+                                                                                                                                                                                                }>
+                    <a href="@Url.Action("MajorsManagement", "Home")">
+                        <i class="icon-class"></i>
+                        <span>Majors</span>
+                        <em class="icon-chevron-right"></em>
+                    </a>
+                </li>
+
+
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="main-container">
+        <div id="loader" class="loader-container">
+            <div  class="spinner">
+                <div class="ball"></div>
+                <p>Wizz Tutors</p>
+            </div>
+        </div>
+        <script type="text/ng-template" id="confirmBox.html">
+
+            <div class="modal-header">
+                <h3 style="cursor:pointer" class="modal-title">Alert !!!
+                
+                    <span class="btn-default pull-right" ng-click="confirmMe(false)">&times;</span>
+                </h3>
+                
+            </div>
+            <div class="modal-body">
+                <span ng-bind="sure" ng-cloak></span>
+            </div>
+            <div class="modal-footer" style="text-align:center">
+
+                <button class="btn btn-success  btn-lg btn-block" ng-click="confirmMe(true)">Yes</button>
+
+            </div>
+        </script>
+
+
+       
+        <div class="breadcrumb">
+            <h1>@ViewBag.BreadCrumb.ToUpper()</h1>
+            <ul class="clearfix">
+                <li>
+
+                    <a href="@Url.Action("Dashboard","Home")">@ViewContext.RouteData.Values["controller"].ToString().ToUpperInvariant() </a> <span>/</span>
+                </li>
+                <li>
+                    <a href="@Url.Action(@ViewContext.RouteData.Values["action"].ToString(),"Home")">@ViewContext.RouteData.Values["action"].ToString()</a>
+                </li>
+            </ul>
+        </div>
+        <div class="common-container ng-cloak">
+            <div class="table-container">
+
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    @*<script src="/scripts/jquery-1.11.2.min.js"></script>
+
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="/scripts/bootstrap.js"></script>
+
+        <!-- Scroll JS-->
+        <script src="/scripts/enscroll-0.6.1.min.js"></script>*@
+    <script>
+        $(function () {
+            WH = window.innerHeight;
+            WW = window.innerWidth
+            $('.scrollbox').enscroll();
+            $("nav").height(WH);
+            $(".user-name .name , .user-name span.icon-chevron-down").click(function () {
+                $(".user-menu").slideDown();
+
+            });
+            $(".overlay-popUp").click(function () {
+                $(".user-name ul").slideUp();
+                $(this).hide();
+            });
+
+            $(window).resize(function () {
+                WH = window.innerHeight;
+                WW = window.innerWidth;
+                $("nav").height(WH);
+            });
+        });
+    </script>
+
+
+    <script>
+    (function ($) {
+        $(window).load(function () {
+
+            $("a[rel='load-content']").click(function (e) {
+                e.preventDefault();
+                var url = $(this).attr("href");
+                $.get(url, function (data) {
+                    $(".content .mCSB_container").append(data); //load new content inside .mCSB_container
+                    //scroll-to appended content
+                    $(".content").mCustomScrollbar("scrollTo", "h2:last");
+                });
+            });
+
+            $(".content").delegate("a[href='top']", "click", function (e) {
+                e.preventDefault();
+                $(".content").mCustomScrollbar("scrollTo", $(this).attr("href"));
+            });
+
+        });
+    })(jQuery);
+    </script>
+</body>
+
+</html>
+@RenderSection("Js", false)

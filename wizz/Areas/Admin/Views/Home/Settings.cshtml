@@ -1,0 +1,208 @@
+﻿
+@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .row {
+        margin-top:12px;
+    }
+ 
+h3 {
+  color: #787878;
+  margin-top: 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07); }
+
+    .wrapper {
+        width: 60%;
+        /*margin: 2px 0px 0px 177px;*/
+        padding:20px;
+        display:table;
+    }
+
+.form-wrapper {}
+
+
+.form-wrapper {}
+
+
+.form-group {
+  /*styles for the form-group itself*/
+  position: relative;
+  width: 100%;
+  margin-bottom: 42px; }
+  .form-group input[type='text'], .form-group input[type='email'] {
+    /*Default styles for field*/
+    position: relative;
+    width: 100%;
+    background: 0 0;
+    padding: 26px 0 12px;
+    font-size: 15px;
+    line-height: 1.4;
+    font-weight: 500;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-width: 0 0 1px;
+    box-shadow: none;
+    z-index: 1; }
+    .form-group input[type='text']:focus, .form-group input[type='email']:focus {
+      outline: 0; }
+  .form-group label {
+    /*Default styles for label*/
+    display: inline-block;
+    position: absolute;
+    margin-bottom: 6px;
+    top: 0;
+    font-size: 15px;
+    font-weight: 600;
+   
+    padding: 0;
+    transition: all .3s ease; }
+  .form-group::after {
+    /*Default styles for 'after' pseudo selector for form-group*/
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.08);
+    transition: all .3s ease; }
+  .form-group .error-block {
+    /*Default Styles for Help-block*/
+    position: absolute;
+    line-height: 0;
+    font-weight: 300;
+    font-size: 12px;
+    color: red;
+    line-height: 24px;
+    transition: all 0.5s ease;
+    margin: 0; }
+    .form-group .error-block.ng-hide {
+      display: block !important;
+      visibility: hidden;
+      opacity: 0; }
+  .form-group.has-focus {
+    /*When field has focus*/ }
+    .form-group.has-focus label {
+      color: #039BE5; }
+    .form-group.has-focus::after {
+      left: 0;
+      background: #039BE5;
+      width: 100%;
+      /*We are changing the width of the pseudo element from 0 to 100%. As there is already transition added to it, the change in width will 'animate'. As we have strategically positioned this pseudo element just below the input with a 2px height, it will 'appear' as bottom-border for the input (which it is actually not)*/ }
+  .form-group.has-error {
+    /*When field has error*/ }
+    .form-group.has-error label {
+      color: red; }
+    .form-group.has-error::after {
+      left: 0;
+      background: red;
+      width: 100%; }
+    .form-group.has-error .help-block:not(.ng-hide) {
+      position: absolute;
+      color: red;
+      opacity: 1;
+      visibility: visible;
+      top: 100%; }
+  .form-group.has-success.has-focus {
+    /*When field has success*/ }
+    .form-group.has-success.has-focus label {
+      color: forestgreen; }
+    .form-group.has-success.has-focus.has-focus::after {
+      left: 0;
+      background: forestgreen;
+      width: 100%; }
+  .form-group.is-empty:not(.has-focus) label {
+    font-weight: 400;
+    font-size: 14px;
+    top: 32px; }
+
+/*# sourceMappingURL=styles.css.map */
+</style>
+<div ng-controller="SettingsCtrl">
+    <div class="row">
+        <taalert />
+    </div>
+    @*<div class="row">
+     
+        <div ng-class="{'has-error':submitted && Settings.perHourFees==''} " class="col-md-4 col-md-offset-2">
+            <label ng-show="Settings.perHourFees">Fees Per Hour</label>
+            <input type="text" sknumber ng-model="Settings.perHourFees" placeholder="Enter fees per hour" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+
+          
+        <div ng-class="{'has-error':submitted && Settings.commission==''} " class="col-md-4  col-md-offset-2">
+            <label ng-show="Settings.commission">Commission (in percentage)</label>
+
+            <input type="text" maxlength="2" sknumber ng-model="Settings.commission" placeholder="Enter commission" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+       
+        <div ng-class="{'has-error':submitted && Settings.perStudentCharge==''} " class=" col-md-4 col-md-offset-2">
+            <label ng-show="Settings.perStudentCharge">Charges per student(in percentage)</label>
+            <input type="text" maxlength="2" sknumber ng-model="Settings.perStudentCharge" placeholder="Enter charges per student" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4  col-md-offset-2">
+            <div ng-click="saveSettings()" class="button raised green actionButton pull-right">
+                <div class="center" fit>Save Settings</div>
+                <paper-ripple fit></paper-ripple>
+            </div>
+        </div>
+        </div>*@
+
+    <div class="wrapper">
+        <div class="form-wrapper">
+     
+            <form name="form" novalidate>
+                <div class="form-group"
+                     ng-class='{ "has-focus": form.perHourFees.hasFocus,
+						"has-success": form.perHourFees.$valid,
+						"has-error": form.perHourFees.$invalid && (form.$submitted || form.perHourFees.$touched),
+						"is-empty": !form.perHourFees.$viewValue }'>
+                    <label for="perHourFees">Per Hour Fees</label>
+                    <input type="text" maxlength="6" sknumber name="perHourFees" ng-model="Settings.perHourFees" required
+                           ng-focus='form.perHourFees.hasFocus=true' , ng-blur='form.perHourFees.hasFocus=false'>
+                    <p ng-show="form.perHourFees.$error.required && (form.perHourFees.$touched || submitted)"
+                       class="error-block">Per Hour Fees is Required!</p>
+                </div>
+                <div class="form-group"
+                     ng-class='{ "has-focus": form.commission.hasFocus,
+						"has-success": form.commission.$valid,
+						"has-error": form.commission.$invalid && (form.$submitted || form.commission.$touched),
+						"is-empty": !form.commission.$viewValue }'>
+                    <label for="commission">Commission (in percentage)</label>
+                    <input type="text" sknumber maxlength="2" name="commission" ng-model="Settings.commission" required
+                           ng-focus='form.commission.hasFocus=true' , ng-blur='form.commission.hasFocus=false'>
+                    <p ng-show="form.commission.$error.required && (form.commission.$touched || submitted)"
+                       class="error-block">Commission is Required!</p>
+                </div>
+                <div class="form-group"
+                     ng-class='{ "has-focus": form.perStudentCharge.hasFocus,
+						"has-success": form.perStudentCharge.$valid,
+						"has-error": form.perStudentCharge.$invalid && (form.$submitted || form.perStudentCharge.$touched),
+						"is-empty": !form.perStudentCharge.$viewValue }'>
+                    <label for="perStudentCharge">Charges per student(in percentage)</label>
+                    <input maxlength="2" sknumber type="text" name="perStudentCharge" ng-model="Settings.perStudentCharge" required
+                           ng-focus='form.perStudentCharge.hasFocus=true' , ng-blur='form.perStudentCharge.hasFocus=false'>
+                    <p ng-show="form.perStudentCharge.$error.required && (form.perStudentCharge.$touched || submitted)"
+                       class="error-block">Per Student Charge is Required!</p>
+                </div>
+              
+                <div ng-click="saveSettings()" class=" button raised green">
+                    <div class="center" fit>Save Settings</div>
+                    <paper-ripple fit></paper-ripple>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+    </div>
+<script src="~/Areas/Admin/AdminScripts/Settings.js"></script>

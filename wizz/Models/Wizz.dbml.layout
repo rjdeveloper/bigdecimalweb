@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.25, 12.25" name="Wizz">
+  <DataContextMoniker Name="/WizzDataContext" />
+  <nestedChildShapes>
+    <classShape Id="fef43e8e-ed68-488e-a85b-af9c6483e4d8" isExpanded="false" absoluteBounds="0.5, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblCollege" />
+      <nestedChildShapes>
+        <elementListCompartment Id="90187c5d-a306-47fe-80f6-6b34e16f8ba5" absoluteBounds="0.515, 0.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="67f5969e-1047-472e-a1ca-974640441eb5" isExpanded="false" absoluteBounds="0.5, 1, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblCardDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6f88f57e-58cc-433d-8b89-e8cda93c2b1a" absoluteBounds="0.51500000000000012, 1.46, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f2dd2d6f-3b66-4157-94f7-76967740ba18" isExpanded="false" absoluteBounds="2.75, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblErrorLog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="67f9fdd0-3b93-4e43-a54b-14a0c7ae2c10" absoluteBounds="2.7649999999999997, 0.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="53a2519e-08af-4f5b-9cd5-8593c54e69a6" isExpanded="false" absoluteBounds="2.625, 1.125, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblPromoCode" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d2bd6e9a-a0b8-4203-9023-b89f1dd1d6fa" absoluteBounds="2.6400000000000006, 1.5850000000000009, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="13ae6abb-94b9-4f01-8e80-739aca33c525" isExpanded="false" absoluteBounds="4.625, 1.125, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblReportSpam" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0605e502-1207-4e9c-95d5-4cd95799c484" absoluteBounds="4.64, 1.5850000000000009, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="dc93c0b1-7af9-4372-8a52-31d659e2d88d" isExpanded="false" absoluteBounds="0.5, 1.625, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblRequest" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6d2ad2c0-11b6-47c2-9a7b-7671198919ab" absoluteBounds="0.51500000000000057, 2.085, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="213358ed-0787-420f-a37b-289221e861db" isExpanded="false" absoluteBounds="2.875, 2.375, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblStudentRating" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3a18f4c9-6c38-4fa9-83c5-d00dd6867702" absoluteBounds="2.8900000000000006, 2.8350000000000009, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="03601976-047e-4505-9247-15d9169b3e17" isExpanded="false" absoluteBounds="2.875, 4, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblTutorDoc" />
+      <nestedChildShapes>
+        <elementListCompartment Id="97c46b7c-c2fe-45fe-955b-28ce829378a9" absoluteBounds="2.8900000000000006, 4.4600000000000009, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6478736e-7e66-47d2-9db1-05c6794efbca" isExpanded="false" absoluteBounds="0.5, 3, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/user" />
+      <nestedChildShapes>
+        <elementListCompartment Id="97fc6a96-76c1-496d-bbb7-7e192875f477" absoluteBounds="0.51500000000000057, 3.4600000000000009, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ae54a032-23b0-4a1c-afc6-702ec7c00c4a" isExpanded="false" absoluteBounds="2.625, 1.625, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblCourse" />
+      <nestedChildShapes>
+        <elementListCompartment Id="685792b9-a3f1-46bf-bc66-6ec05acebe89" absoluteBounds="2.6399999999999997, 2.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d8d2e3e3-43db-4ee3-8cc5-49ddff095a04" isExpanded="false" absoluteBounds="2.875, 3, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblSubject" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4b798229-e2be-49c6-9848-8c7469b80cc9" absoluteBounds="2.8899999999999997, 3.4600000000000009, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="82be599f-612f-478e-9be1-7b8bf24a8664" isExpanded="false" absoluteBounds="0.5, 4.125, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblTutorSchedule" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0d34f1b0-bbad-4310-bdea-1b58c64d8406" absoluteBounds="0.51499999999999968, 4.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fc838591-6c9d-4d69-8005-354e9a294fec" isExpanded="false" absoluteBounds="0.5, 3.5, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblTutorSubject" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1aa5663b-5672-401d-a568-b9c0089e4059" absoluteBounds="0.515, 3.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ed0c0527-d6e9-455a-a67a-18d912fbcf90" isExpanded="false" absoluteBounds="5, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblStudentRequest" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3de63dba-9804-46a3-9e48-89fe32813522" absoluteBounds="5.0150000000000006, 0.96, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bd0cf4ea-65fc-40e1-b892-2b75e755d020" isExpanded="false" absoluteBounds="3, 4.75, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblGroup" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9a1b3ca1-f32d-4edf-8461-49784dae7654" absoluteBounds="3.0149999999999997, 5.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6362fe15-1ad1-4538-abb2-a14fdd98d8a5" isExpanded="false" absoluteBounds="5.125, 2.375, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblInviteFriend" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e225960c-35c8-45b9-bbeb-e89f1eef1ab5" isExpanded="false" absoluteBounds="5.14, 2.835, 1.9700000000000002, 0.2493896484375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="22b833d8-dc74-42e2-8764-56d00ef4570b" isExpanded="false" absoluteBounds="1, 4.875, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblGroupMember" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2f4830dc-a59c-4287-8dbb-0e25e81d1d2e" isExpanded="false" absoluteBounds="1.0150000000000001, 5.335, 1.9700000000000002, 0.2493896484375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6e8ed000-b89b-416b-a028-0f41bfb2303b" isExpanded="false" absoluteBounds="4.375, 4.25, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblTutorRating" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f66d0706-4946-4854-a30d-8348de374626" absoluteBounds="4.39, 4.71, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="915b8014-fc22-4296-884f-12a8f76983e2" isExpanded="false" absoluteBounds="2.75, 3.625, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblTutorBankDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d2e23cc1-719b-481b-9ca7-3fa82a456ae6" absoluteBounds="2.7649999999999997, 4.085, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="92b64c1c-4f62-4a98-a00c-da3ccdf29407" isExpanded="false" absoluteBounds="4.625, 3.75, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblTutorProfile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="182d340a-5574-49d9-9420-a3c075e42428" absoluteBounds="4.64, 4.21, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ff60c094-10c8-462d-a0c3-d094fb5a3f5f" absoluteBounds="4, 10.25, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/WizzDataContext/tblPromoHistory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2bb7de0f-0b39-46b7-be41-80a86d091556" absoluteBounds="4.015, 10.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ca1cbb09-2dc8-4420-b992-32b5ca0fe2ae" isExpanded="false" absoluteBounds="4.875, 3, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6bf62958-f75b-4126-bbe4-838d5d5bed23" absoluteBounds="4.89, 3.46, 1.9700000000000002, 6.5953369140625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6a9d396e-a414-4e2b-9986-8a3a3b6f2da7" isExpanded="false" absoluteBounds="0.625, 2.125, 2, 0.45">
+      <DataClassMoniker Name="/WizzDataContext/tblClass" />
+      <nestedChildShapes>
+        <elementListCompartment Id="af93f03a-a9ea-46a1-9df4-5a3df4f44829" absoluteBounds="0.63999999999999968, 2.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7428ca4a-feee-4c61-9e16-4dd4a8168779" absoluteBounds="6.875, 1.875, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/WizzDataContext/tblPaymentDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4f374e1c-4b17-4f1c-80ea-cab98f0a79f6" absoluteBounds="6.89, 2.335, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f49f51f9-490b-4980-bf31-59253458ffc4" absoluteBounds="9, 2, 2, 5.2323225911458326">
+      <DataClassMoniker Name="/WizzDataContext/tblSession" />
+      <nestedChildShapes>
+        <elementListCompartment Id="98d82fa3-1388-4a9b-bfac-33080b084d8d" absoluteBounds="9.015, 2.46, 1.9700000000000002, 4.672322591145833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "UpdateLatLong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/common/siteUrl.js"></script>
+<script src="~/Scripts/Angular/angular.min.js"></script>
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<div ng-app="updateLatLong">
+
+
+    <div ng-controller="latlongCtrl">
+        <div class="container" style="padding:5% 0% 0% 20%">
+
+
+        {{jsonResponse|json}}
+        <input type="text" skurl placeholder="email" class="form-control" ng-model="updateLatLong.email" />
+        <input type="text" ng-model="updateLatLong.lat" class="form-control" placeholder="latitude" />
+        <input type="text" ng-model="updateLatLong.lon" class="form-control" placeholder="longitude" />
+        @*<input type="text" ng-model="updateLatLong.type" placeholder="type" />*@
+        <button class="btn btn-info" ng-click="save()">Save</button>
+
+            <h1>Update lat long for Test</h1>
+            {{jsonResponse}}
+         
+        </div>
+
+    </div>
+
+</div>
+<script>
+
+    angular.module("updateLatLong", []).controller("latlongCtrl", function ($scope, $http) {
+        $scope.updateLatLong = {
+            email: null,
+            lat: null,
+            lon: null,
+            type:null
+
+
+        }
+        $scope.jsonResponse = null;
+
+        $scope.save = function () {
+
+            $http.post(siteUrl + '/api/webservice/UpdateLatLong', $scope.updateLatLong).success(function (response) {
+                $scope.jsonResponse = response.Result;         
+            })
+
+        }
+     
+
+    })
+    
+</script>
+

@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div ng-controller="dashbolardCtrl">
+
+    <div class="welcomeadmin"><h2>Welcome Admin</h2></div>
+    <div class="">
+        <div class="col-lg-6 dashboardcols">
+            <div class="Topbox">
+                <span class="HeadingChart">
+                    <h4>Revenue Report</h4>
+                    <input type="text" readonly="true" class="Datebt" id="btnFilterCalendar" value="@DateTime.UtcNow.ToString("yyyy")" />
+
+                </span>
+                <center>
+                    <canvas id="bar" class="chart chart-bar" data="bardata"
+                            labels="barlabels" colours="barColorData"></canvas>
+
+                </center>
+                <ul>
+                    <li>Total Revenue Generated - <small id="smallTotalRevenue"></small></li>
+                    @*<li><i class="blue"></i>Parent App</li>*@
+                    <li><i class="red"></i>Total Sale Month Wise</li>
+                </ul>
+            </div>
+        </div>
+        @*<div class="col-lg-3">Bar Graph Data
+
+                <input type="text" ng-model="bardata" />
+
+
+
+            </div>*@
+        <div class="col-lg-6 pull-right pai-chart-container dashboardcols dashboardcolssecond">
+            <span class="HeadingChart"><h4>Site Users</h4></span>
+                @*<div class="pai-graph-input">
+                <input type="text" ng-repeat="p in piedata track by $index" ng-model="p" />
+
+            </div>*@
+                <div class="pai-chart-container">
+                    <canvas id="pie" class="chart chart-pie" data="piedata"
+                            labels="pielabels"></canvas>
+                </div>
+</div>
+    </div>
+
+    <div class="">
+        <div class="col-lg-8 dashboardcols">
+            <center>
+                <canvas id="line" class="chart chart-line" data="data"
+                        labels="labels" legend="true" series="series"
+                        click="onClick"></canvas>
+            </center>
+        </div>
+    </div>
+
+</div>
+<script src="~/Areas/Admin/AdminScripts/dashBoardCtrl.js"></script>

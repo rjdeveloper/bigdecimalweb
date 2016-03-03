@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.Title = "Majors";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<style>
+ 
+
+</style>
+<div class="" ng-controller="majorsCtrl">
+
+    <button ng-click="addClass()" class="btn btn-info pull-right addpromocode">Add Major</button>
+    <div class="row">
+        <taalert />
+        <nodata />
+    </div>
+
+    <!-- Table starts here -->
+    <div class="table-responsive">
+        <table ng-table="tableParams" class="table table-bordered tablestyle" style="margin-bottom: 0px">
+            <tr ng-repeat="d in $data track by $index ">
+                <td data-title="'S.No.'" style=" vertical-align: middle; width:10px">
+                    <span ng-bind="$index+1"></span>
+                </td>
+                <td data-title="'Major Name'" style=" vertical-align: middle;">
+                    <span ng-bind="d.className"></span>
+                </td>
+                <td data-title="'College'" style=" vertical-align: middle;">
+                    <span>{{d.fkCollegeId|mycollegesfilter:collegeList}}</span>
+
+                </td>
+                @*<td data-title="'Created Date'" style=" vertical-align: middle;">
+                        <span >{{d.createdDate | date:'M/d/yyyy'}}</span>
+                    </td>*@
+                <td data-title="'Actions'" style=" vertical-align: middle;width:30%" class="action-button">
+
+                    <div ng-click="editClass(d)" class="button raised blue actionButton">
+                        <div class="center" fit>Edit</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+
+
+                    <div ng-click="ConfirmBox(d.pkClassId,2)" class="button raised red actionButton">
+                        <div class="center" fit>Delete</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+
+                    <div ng-show="d.isActive" ng-click="ConfirmBox(d.pkClassId,0)" class="button raised yellow actionButton">
+                        <div class="center" fit>Deactivate</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+                    <div ng-show="!d.isActive" ng-click="ConfirmBox(d.pkClassId,1)" class="button raised green actionButton">
+                        <div class="center" fit>Activate</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="classModal" class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">Majors</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Enter Major Name</label>
+                            <input maxlength="40" type="text" ng-model="majorModel.className" placeholder="Enter Major Name" class="form-control" />
+
+                        </div>
+                        <div class="col-md-6">
+                            <label>Select Colleges </label>
+
+                            @*<input ng-click="sel=!sel"  type="text" ng-model="asdas" readonly ng-show="!sel"  placeholder="Select Colleges"/>
+                            <ul ng-show="sel">
+                                <li ng-click="sel=!sel;asdas=n.collegeName" ng-repeat="n in collegeList">
+                                    {{n.collegeName}}
+
+                                </li>
+
+                            </ul>*@
+
+
+                            <select ng-model="majorModel.fkCollegeId" ng-required="true" class="form-control">
+                                <option value="0">Select Colleges</option>
+                                <option ng-selected="majorModel.fkCollegeId==cl.pkCollegeId||null" value="{{cl.pkCollegeId}}" ng-repeat="cl in collegeList">
+                                    {{cl.collegeName}}
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+
+
+
+                   
+                </div><!-- /.modal-content -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="reset()">Close</button>
+                    <button type="button" ng-disabled="majorModel.fkCollegeId==0 || majorModel.className==''|| majorModel.className==null" ng-click="saveCourse()" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+
+@section Js{
+    <script src="~/Areas/Admin/AdminScripts/majorsMgmt.js"></script>
+}
+

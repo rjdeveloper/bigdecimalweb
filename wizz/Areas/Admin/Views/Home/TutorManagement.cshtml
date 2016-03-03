@@ -1,0 +1,228 @@
+﻿@{
+    ViewBag.Title = "TutorManagement";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<style>
+    .maxImg {
+        max-height: 44px;
+    }
+
+    .blue {
+        margin: auto;
+    }
+
+    .hovergrey {
+        background-color: #d3d3d3;
+        color: black;
+        font-weight: bolder;
+    }
+</style>
+
+<div ng-controller="tutorManagementCtrl">
+
+    <div class="row">
+        <taalert />
+        <nodata />
+    </div>
+
+    <!-- Table starts here -->
+    <div class="table-responsive-vertical shadow-z-1">                                                                                   
+        <table ng-table="tableParams" class="table table-bordered table-mc-light-blue tablestyle" style="margin-bottom: 0px">
+            <tr ng-repeat="d in $data track by $index ">
+                <td data-title="'S.No.'" style=" vertical-align: middle; width:10px">
+                    <span ng-bind="d.sno"></span>
+                </td>
+                <td data-title="'User Name'" style=" vertical-align: middle;">
+                    @*<img ng-show="d.profilePic" src="{{d.profilePic|imageFilter}}" alt="..." class="img-circle maxImg">*@
+                    <span>{{d.userName}}</span>
+                </td>
+
+                <td data-title="'Major'" style=" vertical-align: middle;">
+                    <span>{{d.subjects|majorFilter:majorsList}}</span>
+
+                </td>
+                <td data-title="'College'" style=" vertical-align: middle;">
+                    <span>{{d.fkCollegeId|collegeFilter:collegeList}}</span>
+
+                </td>
+                <td data-title="'Email'" style=" vertical-align: middle;">
+                    <span ng-bind="d.userEmail"></span>
+                </td>
+
+
+                <td data-title="'Details'" style=" vertical-align: middle;" class="action-button">
+                    <div ng-click="showTutorDetails(d)" class="button raised blue">
+                        <div class="center" fit>Show Details</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+
+                </td>
+                @*<td data-title="'Details'" style=" vertical-align: middle;" class="action-button">
+                    <div ng-click="payTutor(d)" class="button raised yellow">
+                        <div class="center" fit>Pay</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+
+                </td>*@
+
+
+            </tr>
+        </table>
+    </div>
+    <div id="tutorModal" class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetMsg()"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">Tutor Subjects</h4>
+                </div>
+
+
+
+                <div class="modal-body">
+                    <div class="docBlock tutor-img">
+                        <img class="docImg " src="{{docUrl|imageFilter}}" alt="..." />
+                        <a href="{{docUrl|imageFilter}}" download class="btn btn-primary btn-primary bt-download"><span class="glyphicon glyphicon-download"></span>Download</a>
+
+                    </div>
+
+                    <div class="row listHeader listheadernew">
+                        <div class="col-md-6"> Applied Subjects {{(tutorSubjectList|filter:{'isApproved':false}:true).length}}</div>
+                        <div class="col-md-6">
+                            Approved Subjects {{(tutorSubjectList|filter:{'isApproved':true}:true).length}}
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul ng-show="(tutorSubjectList|filter:{'isApproved':false}:true).length>0" class="subjectList tutor-mng">
+                                <li  ng-class="{hovergrey: hover}"
+                                    ng-mouseenter="hover = true"
+                                    ng-mouseleave="hover = false" ng-click="n.isApproved=true" ng-repeat="n in tutorSubjectList|filter:{'isApproved':false}:true">
+                               {{n.subjectId|classFilter:classList}} <i class="fa fa-check"></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul ng-show="(tutorSubjectList|filter:{'isApproved':true}:true).length>0" class="subjectList tutor-mng" style=" background: #ECECEC;">
+                                <li ng-class="{hovergrey: hover}"
+                                    ng-mouseenter="hover = true"
+                                    ng-mouseleave="hover = false" ng-click="n.isApproved=false" ng-repeat="n in tutorSubjectList|filter:{'isApproved':true}:true">
+
+                                    {{n.subjectId|classFilter:classList}}
+                                    <i class="fa fa-times"></i>
+
+                                </li>
+
+                            </ul>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+                    <div data-dismiss="modal" aria-label="Close" ng-click="resetMsg()" class="button raised">
+                        <div class="center" fit>Close</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+
+
+                    <div ng-click="approveSubjects()" class="button raised green">
+                        <div class="center" fit>Approve</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div id="payModal" class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetMsg()"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">Tutor payments
+                    </h4>
+                </div>
+
+
+
+                <div class="modal-body">
+                    <div class="docBlock">
+
+
+                        <img class="docImg" src="{{docUrl|imageFilter}}" alt="..." />
+                        <a href="{{docUrl|imageFilter}}" download style="position: fixed;
+    margin-left: -118px;
+    margin-top: 20px;" class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-download"></span>Download</a>
+
+                    </div>
+
+                    <div class="row listHeader listheadernew">
+                        <div class="col-md-6"> Applied Subjects {{(tutorSubjectList|filter:{'isApproved':false}:true).length}}</div>
+                        <div class="col-md-6">
+                            Approved Subjects {{(tutorSubjectList|filter:{'isApproved':true}:true).length}}
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul ng-show="(tutorSubjectList|filter:{'isApproved':false}:true).length>0" class="subjectList">
+                                <li ng-class="{hovergrey: hover}"
+                                    ng-mouseenter="hover = true"
+                                    ng-mouseleave="hover = false" ng-click="n.isApproved=true" ng-repeat="n in tutorSubjectList|filter:{'isApproved':false}:true">
+                                    {{n.subjectId|classFilter:classList}} <i class="fa fa-check"></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul ng-show="(tutorSubjectList|filter:{'isApproved':true}:true).length>0" class="subjectList">
+                                <li ng-class="{hovergrey: hover}"
+                                    ng-mouseenter="hover = true"
+                                    ng-mouseleave="hover = false" ng-click="n.isApproved=false" ng-repeat="n in tutorSubjectList|filter:{'isApproved':true}:true">
+
+                                    {{n.subjectId|classFilter:classList}}
+                                    <i class="fa fa-times"></i>
+
+                                </li>
+
+                            </ul>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+                    <div data-dismiss="modal" aria-label="Close" ng-click="resetMsg()" class="button raised">
+                        <div class="center" fit>Close</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+
+
+                    <div ng-click="approveSubjects()" class="button raised green">
+                        <div class="center" fit>Approve</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+
+@section Js{
+    <script src="~/Areas/Admin/AdminScripts/tutorManagement.js"></script>
+}
+
+
+
+

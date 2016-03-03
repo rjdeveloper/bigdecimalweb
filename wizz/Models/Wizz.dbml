@@ -1,0 +1,744 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_9ADF60_wizz" Class="WizzDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=SQL5013.Smarterasp.net;Initial Catalog=DB_9ADF60_wizz;Persist Security Info=True;User ID=DB_9ADF60_wizz_admin;MultipleActiveResultSets=True;Application Name=EntityFramework" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DB_9ADF60_wizzConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblCollege" Member="tblColleges">
+    <Type Name="tblCollege">
+      <Column Name="pkId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="collegeName" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCardDetails" Member="tblCardDetails">
+    <Type Name="tblCardDetail">
+      <Column Name="pkCardId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fkUserId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="cardType" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="cardNumber" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="validMonth" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="validYear" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="accountNo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="cardHolderName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="paymentType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="digitCvv" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="bankName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="isUsed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="lastFour" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblErrorLog" Member="tblErrorLogs">
+    <Type Name="tblErrorLog">
+      <Column Name="pkId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LogType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ErrorMessage" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="StackTrace" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Dated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MethodName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="LoggedInUserId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="URL" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="RefUrl" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="SessionValues" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPromoCode" Member="tblPromoCodes">
+    <Type Name="tblPromoCode">
+      <Column Name="pkPromoCodeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="promoCode" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="validFrom" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="validTo" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="discountPercentage" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="isUsed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="usageCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblReportSpam" Member="tblReportSpams">
+    <Type Name="tblReportSpam">
+      <Column Name="pkId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fkFromId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="fkToId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="userType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblRequest" Member="tblRequests">
+    <Type Name="tblRequest">
+      <Column Name="pkRequestId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="uniqueRequestId" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="fkTutorId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="fkStudentId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="isAccepted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="timeStamp" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="startTime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="sessionStartTime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="sessionStartDate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="sesssionEndTime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="sessionEndDate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="tutorEarnedAmt" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="earnedAmount" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="isCancelled" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isStarted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isEnded" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblStudentRating" Member="tblStudentRatings">
+    <Type Name="tblStudentRating">
+      <Column Name="pkRatingId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fkTutorId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="fkStudentId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="studentRating" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblTutorDocs" Member="tblTutorDocs">
+    <Type Name="tblTutorDoc">
+      <Column Name="pkDocId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fkTutorId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="fileName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.users" Member="users">
+    <Type Name="user">
+      <Column Name="username" Type="System.String" DbType="VarChar(250) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCourse" Member="tblCourses">
+    <Type Name="tblCourse">
+      <Column Name="pkId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="isExtraCurricular" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="courseName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="timeStamp" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblSubjects" Member="tblSubjects">
+    <Type Name="tblSubject">
+      <Column Name="pkId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="subjectName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="fkClassId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="timeStamp" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblTutorSchedule" Member="tblTutorSchedules">
+    <Type Name="tblTutorSchedule">
+      <Column Name="pkId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fkUserId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="dayType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fromTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="toTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblTutorSubject" Member="tblTutorSubjects">
+    <Type Name="tblTutorSubject">
+      <Column Name="pkTutorSubjectId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fkTutorId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="subjectType" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="fkSubjectId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="isApproved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblStudentRequest" Member="tblStudentRequests">
+    <Type Name="tblStudentRequest">
+      <Column Name="pkId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fkUserId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="dayType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="timeType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fromTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="toTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="subjectType" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="fkSubjectId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="reschedleTimes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="longi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="uniqueStudentRequestId" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblGroup" Member="tblGroups">
+    <Type Name="tblGroup">
+      <Column Name="pkId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="groupId" Type="System.String" DbType="VarChar(550)" CanBeNull="true" />
+      <Column Name="subjectName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="fkAdminId" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="groupPic" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="groupName" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="timeSlot" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblInviteFriends" Member="tblInviteFriends">
+    <Type Name="tblInviteFriend">
+      <Column Name="pkId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="userName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="phoneNum" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="fkUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fkFriendId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="uniqueRequestId" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="isConfirm" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblGroupMembers" Member="tblGroupMembers">
+    <Type Name="tblGroupMember">
+      <Column Name="pkId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fkGroupId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fkUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblTutorRating" Member="tblTutorRatings">
+    <Type Name="tblTutorRating">
+      <Column Name="pkRatingId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fkTutorId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="fkStudentId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="knowledgable" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="helpful" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="punctual" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="userName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="sessionId" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="review" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblTutorBankDetail" Member="tblTutorBankDetails">
+    <Type Name="tblTutorBankDetail">
+      <Column Name="pkId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fkUserId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="bankName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="accountHolderName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="accountNumber" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ifscCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="micrCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="branchAddress" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblTutorProfile" Member="tblTutorProfiles">
+    <Type Name="tblTutorProfile">
+      <Column Name="pkId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fkUserId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="collegeName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="isApproved" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TimeStamp" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="tutorSearchCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="passingYear" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="distance" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="feesPerHour" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="referralCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="lat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="longi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="isAvailable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPromoHistory" Member="tblPromoHistories">
+    <Type Name="tblPromoHistory">
+      <Column Name="pkPromoHistoryId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fkUserId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="fkPromoCodeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="discountPercentage" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblUser" Member="tblUsers">
+    <Type Name="tblUser">
+      <Column Name="pkUserId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="guid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="userName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="userEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="facebookId" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="profilePic" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="badge" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="deviceType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="deviceToken" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="isNotificationOn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isVerified" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isFirstTimeLogin" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="registerType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="isPasswordChanged" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="lastSyncDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="credits" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="isTeacher" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="avgRatingTutor" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="avgRatingStudent" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="referralCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="longitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="lat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="stripeId" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="isOtpVerified" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="otpCode" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="phoneNum" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="paymentType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblClass" Member="tblClasses">
+    <Type Name="tblClass">
+      <Column Name="pkId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="className" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="fkCourseId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPaymentDetails" Member="tblPaymentDetails">
+    <Type Name="tblPaymentDetail">
+      <Column Name="pkId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="studentId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="transactionId" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="tutorId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="hasPaid" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isSuccess" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="sessionId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="paymentType" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblSession" Member="tblSessions">
+    <Type Name="tblSession">
+      <Column Name="pkSessionId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tutorId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="uniqueRequestId" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="studentId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="fromTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="toTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="dayType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="sessionAmount" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="sessionDate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="sessionStartTime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="sessionEndtime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="homeWorkDueDate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="sessionNotes" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="counts" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="homeWork" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="totalMinutes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isStarted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isComplete" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isCancelled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.GetPromoCodes" Method="GetPromoCodes">
+    <ElementType Name="GetPromoCodesResult">
+      <Column Name="pkPromoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="promoName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="counts" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="validFrom" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="validTo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="discount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="usageTimes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_AcceptTutor" Method="usp_AcceptTutor">
+    <Parameter Name="tutorId" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="studentId" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="fromTime" Type="System.String" DbType="VarChar(2)" />
+    <Parameter Name="toTime" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="totalMinutes" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_isUpdatedData" Method="usp_isUpdatedData">
+    <Parameter Name="lastSyncTime" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="updatedLastSyncTime" Type="System.String" DbType="VarChar(50)" Direction="InOut" />
+    <ElementType Name="usp_isUpdatedDataResult">
+      <Column Name="" Member="Column1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_SaveLog" Method="usp_SaveLog">
+    <Parameter Name="LogType" Parameter="logType" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ErrorMessage" Parameter="errorMessage" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="StackTrace" Parameter="stackTrace" Type="System.String" DbType="Text" />
+    <Parameter Name="MethodName" Parameter="methodName" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="LoggedInUserId" Parameter="loggedInUserId" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="URL" Parameter="uRL" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="RefUrl" Parameter="refUrl" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="SessionValues" Parameter="sessionValues" Type="System.String" DbType="Text" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.usp_GetSubjectsForTutor" Method="usp_GetSubjectsForTutor">
+    <Parameter Name="tutorId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_GetSubjectsForTutorResult">
+      <Column Name="subjectName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="subjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="isApproved" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="isApplied" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetNewRequest" Method="usp_GetNewRequest">
+    <Parameter Name="tutorId" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="studentId" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="isAccepted" Type="System.Boolean" DbType="Bit" />
+    <ElementType Name="usp_GetNewRequestResult">
+      <Column Name="requestId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="fkStudentId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="fkTutorId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="studenName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="studentPic" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="tutorPic" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="tutorName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="className" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="calculatedAmount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="uniqueRequestId" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="assignment" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="accompanyNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="forMinutes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="latitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="longitude" Type="System.Decimal" DbType="Decimal(18,10)" CanBeNull="true" />
+      <Column Name="isNow" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="location" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetTutorsForAdmin" Method="usp_GetTutorsForAdmin">
+    <ElementType Name="usp_GetTutorsForAdminResult">
+      <Column Name="pkUserId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="userEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="userName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="profilePic" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="subjects" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="fkcollegeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fkclassId" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="passingYear" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="isApproved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="docName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetPendingRequest" Method="usp_GetPendingRequest">
+    <ElementType Name="usp_GetPendingRequestResult">
+      <Column Name="fktutorid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="badge" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="devicetype" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="devicetoken" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetTutors" Method="usp_GetTutors">
+    <Parameter Name="classId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="latitude" Type="System.Decimal" DbType="Decimal(18,10)" />
+    <Parameter Name="longitude" Type="System.Decimal" DbType="Decimal(18,10)" />
+    <Parameter Name="userId" Type="System.Int64" DbType="BigInt" />
+    <ElementType Name="usp_GetTutorsResult">
+      <Column Name="fkUserId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="deviceType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="deviceToken" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="badge" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetCourseClassSubList" Method="GetCourseClassSubList">
+    <ElementType Name="GetCourseClassSubListResult">
+      <Column Name="pkId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="courseName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="createdDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="timeStamp" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_P2GetSubjectsForTutor" Method="usp_P2GetSubjectsForTutor">
+    <Parameter Name="tutorId" Type="System.Int64" DbType="BigInt" />
+    <ElementType Name="usp_P2GetSubjectsForTutorResult">
+      <Column Name="subjectName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_P2GetGroupMembers" Method="usp_P2GetGroupMembers">
+    <Parameter Name="groupId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_P2GetGroupMembersResult">
+      <Column Name="profilePic" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="pkUserId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="avgRatingStudent" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="userName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="fkGroupId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="memberId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetSessionInfoById" Method="usp_GetSessionInfoById">
+    <Parameter Name="sessionId" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="userId" Type="System.Int64" DbType="BigInt" />
+    <ElementType Name="usp_GetSessionInfoByIdResult">
+      <Column Name="sessionStartTime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="sesssionEndTime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="fkTutorId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="profilePic" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="userName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="className" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="reschedleTimes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="pkUserId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_P2GetTutorBySearchCode" Method="usp_P2GetTutorBySearchCode">
+    <Parameter Name="tutorCode" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="usp_P2GetTutorBySearchCodeResult">
+      <Column Name="fkUserId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="About" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="passingYear" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="lat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="longi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="CollegeName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="feesPerHour" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="deviceType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="deviceToken" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="profilePic" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="avgRatingTutor" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="userName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="badge" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetFriendsOfUser" Method="usp_GetFriendsOfUser">
+    <Parameter Name="uniqueRequestId" Type="System.String" DbType="VarChar(500)" />
+    <ElementType Name="usp_GetFriendsOfUserResult">
+      <Column Name="uniqueRequestId" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="fId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fkUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="frienName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="friendPhone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="fkFriendId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isConfirm" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="profilePic" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="userName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="phoneNum" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetSessions" Method="usp_GetSessions">
+    <Parameter Name="userId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_GetSessionsResult">
+      <Column Name="uniqueRequestId" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="tutorName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="tutorId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="profilePic" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="subjectId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="subjectType" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="sessionId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="subjectName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="lat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="longi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="dayType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="fromTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="toTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="sessionStartTime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="sessionEndtime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="homeWork" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="homeWorkDueDate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetSessionsForTutor" Method="usp_GetSessionsForTutor">
+    <Parameter Name="userId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_GetSessionsForTutorResult">
+      <Column Name="uniqueRequestId" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="studentName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="studentId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="profilePic" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="subjectId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="subjectType" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="sessionId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="subjectName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="lat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="longi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="dayType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="fromTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="toTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="homeWork" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="homeWorkDueDate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetSessionForStudent" Method="usp_GetSessionForStudent" IsComposable="true">
+    <Parameter Name="tutorId" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="studentId" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="isAccepted" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="uniqueRequestId" Type="System.String" DbType="VarChar(1)" />
+    <Return Type="object" />
+  </Function>
+  <Function Name="dbo.usp_GetHistoryDetailsForTutor" Method="usp_GetHistoryDetailsForTutor">
+    <Parameter Name="uniqueRequestId" Type="System.String" DbType="VarChar(500)" />
+    <ElementType Name="usp_GetHistoryDetailsForTutorResult">
+      <Column Name="uniqueRequestId" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="forMinutes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sessionCost" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="lat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="longi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="sessionNotes" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="homeWork" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="subjectId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="subjectType" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="paymentType" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="sessionId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="dayType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="fromTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="toTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="sessionStartTime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="sessionEndtime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="homeWorkDueDate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetHistoryForTutor" Method="usp_GetHistoryForTutor">
+    <Parameter Name="userId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_GetHistoryForTutorResult">
+      <Column Name="uniqueRequestId" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="tutorName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="tutorId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="profilePic" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="subjectId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="subjectType" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="paymentType" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="tutorRating" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="sessionId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TotalMinutes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="subjectName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="lat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="longi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="dayType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="fromTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="toTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="sessionStartTime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="sessionEndtime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="homeWork" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="homeWorkDueDate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetHistoryDetailsForStudent" Method="usp_GetHistoryDetailsForStudent">
+    <Parameter Name="uniqueRequestId" Type="System.String" DbType="VarChar(500)" />
+    <ElementType Name="usp_GetHistoryDetailsForStudentResult">
+      <Column Name="uniqueRequestId" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="forMinutes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sessionCost" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="lat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="longi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="sessionNotes" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="homeWork" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="subjectId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="subjectType" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="paymentType" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="sessionId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="dayType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="fromTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="toTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="sessionStartTime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="sessionEndtime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="updatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="homeWorkDueDate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetEligibleSubjects" Method="usp_GetEligibleSubjects">
+    <Parameter Name="userId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_GetEligibleSubjectsResult">
+      <Column Name="subjectType" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="fkSubjectId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="isApproved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="subjectName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_GetHistoryForStudent" Method="usp_GetHistoryForStudent">
+    <Parameter Name="userId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_GetHistoryForStudentResult">
+      <Column Name="uniqueRequestId" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="tutorName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="tutorId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="profilePic" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="subjectId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="subjectType" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="paymentType" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="tutorRating" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="sessionId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TotalMinutes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="searchCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="subjectName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="lat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="longi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="dayType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="fromTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="toTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="sessionStartTime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="sessionEndtime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="homeWork" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="homeWorkDueDate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_P2GetTutorsList" Method="usp_P2GetTutorsList">
+    <Parameter Name="userId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="subjectId" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="latitude" Type="System.Decimal" DbType="Decimal(18,10)" />
+    <Parameter Name="longitude" Type="System.Decimal" DbType="Decimal(18,10)" />
+    <Parameter Name="location" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="distance" Type="System.Int32" DbType="Int" />
+    <ElementType Name="usp_P2GetTutorsListResult">
+      <Column Name="fkUserId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="About" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="passingYear" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="lat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="longi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="CollegeName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="feesPerHour" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="deviceType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="deviceToken" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="profilePic" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="avgRatingTutor" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="userName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="badge" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

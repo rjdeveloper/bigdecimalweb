@@ -1,0 +1,289 @@
+﻿
+@{
+    ViewBag.Title = "ActivityManagement";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .form-control {
+        width: 60%;
+    }
+
+    .handpointer {
+        cursor: pointer;
+    }
+</style>
+<div class="panel" ng-controller="categoryCtrl">
+    <div class="panel-body">
+        <div class="headTag pull-left">Category Management</div>
+        <div class="pull-right">
+            <!-- Button trigger modal -->
+            <button type="button" ng-click="resetModals()" class="btn btn-info " data-toggle="modal" data-target="#superModal">
+                Add Super Category
+            </button>
+            <button type="button" ng-click="resetModals()" class="btn btn-info" data-toggle="modal" data-target="#catModal">
+                Add Category
+            </button>
+            <button type="button" class="btn btn-info" ng-click="resetModals()" data-toggle="modal" data-target="#subModal">
+                Add Sub Category
+
+            </button>
+        </div>
+    </div>
+    <div ng-show="msg" class="message-info">
+        <label class="alert alert-{{msgType}}">{{msg}}</label>
+        <span class="cross-icon" style="cursor:pointer" ng-click="msg=''">X</span>
+    </div>
+    <div class="table-responsive" style="overflow:auto">
+        <div>
+
+
+            <div ng-repeat="sup in categoryList| filter: { type: 1 }" class="cate-container">
+                <div class="list-table">
+                    <div class="col-lg-1">
+                        <span ng-click="testFunc(sup)" ng-show="showHideCategories(sup)" ng-class="sup.catId==expandingCategory? 'handpointer glyphicon glyphicon-minus icon-accordion' : 'handpointer glyphicon glyphicon-plus icon-accordion'" role="button"></span>
+                    </div>
+                    <div class="">
+                        <span class="main-cate-name adjust-line">
+                            <b>
+                                {{sup.name}}
+                            </b>
+
+                        </span>
+                    </div>
+                    <div class="col-lg-8">
+                        <span>
+                            <button class="btn btn-danger fLeft" ng-show="sup.isActive==1" ng-click="ChangeCategoryStatus(sup)">Deactivate</button>
+                            <button class="btn btn-info fLeft" ng-click="editCategory(sup)">Edit</button>
+                            <button class="btn btn-success fLeft" ng-show="sup.isActive==0" ng-click="ChangeCategoryStatus(sup)">Activate</button>
+
+                        </span>
+                    </div>
+                </div>
+                <div class="padding-left-60">
+                    <table class="table table-condensed list-of-iteams" style="margin-bottom: 0px" cellpadding="10" border="1">
+
+                        <tr ng-show="cat.fkCategoryId==expandingCategory && sup.isActive==1 " ng-repeat="cat in categoryList| CategoryListFilter:sup.catId">
+                            <td class="col-lg-1"><span ng-show="showHideCategories(cat)" ng-class="cat.catId==expandingSubCategory? 'handpointer glyphicon glyphicon-minus icon-accordion' : 'handpointer glyphicon glyphicon-plus icon-accordion'" role="button" ng-click="testFunction(cat.catId)"></span></td>
+                            <td>
+                                <strong style="color:slategrey" class="adjust-line">
+                                    {{cat.name}}
+                                </strong>
+                                <button class="btn btn-danger" ng-show="cat.isActive==1" ng-click="ChangeCategoryStatus(cat)">Deactivate</button>
+                                <button class="btn btn-info" ng-click="editCategory(cat,sup.catId)">Edit  </button>
+                                <button class="btn btn-success" ng-show="cat.isActive==0" ng-click="ChangeCategoryStatus(cat)">Activate</button>
+
+                                <table ng-if="expandingSubCategory && cat.isActive==1" class="table-responsive sub-cat-list">
+                                    <tr ng-show="sub.fkCategoryId==expandingSubCategory" ng-repeat="sub in categoryList| CategoryListFilter:cat.catId">
+                                        <td style="color:slategrey" class="adjust-line padding-left">
+                                            {{sub.name}}
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger" ng-show="sub.isActive==1" ng-click="ChangeCategoryStatus(sub)">Deactivate</button>
+                                            <button class="btn btn-info" ng-click="editCategory(sub,sup.catId)">Edit  </button>
+                                            <button class="btn btn-success" ng-show="sub.isActive==0" ng-click="ChangeCategoryStatus(sub)">Activate</button>
+
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        @*<select ng-options="item.UnitName  for item in UnitsList track by item.pkId" ng-model="selected">
+                <option value="">Units</option>
+            </select>*@
+        <!-- Table starts here -->
+        @*<div class="table-responsive">
+                <table ng-table="tableParams" class="table table-condensed" style="margin-bottom: 0px">
+                    <tr ng-repeat="d in categoryList | filter: { type: 1 }">
+                        <td> <a role="button" href="#collapseExample" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">+</a></td>
+                        <td data-title="'Category Type'" style=" vertical-align: middle;">
+                            <span>{{d.name}}</span>
+                        <td data-title="'Actions'" style=" vertical-align: middle;">
+                            <button class="btn btn-success fLeft" ng-show="d.isActive==0" ng-click="ChangeCategoryStatus(d)">Activate</button>
+                            <button class="btn btn-info fLeft" ng-click="editCategory(d)">Edit</button>
+                            <button class="btn btn-danger fLeft" ng-show="d.isActive==1" ng-click="ChangeCategoryStatus(d)">Deactivate</button>
+                        </td>
+                        <td class="collapse" id="collapseExample"><table>
+                            <tr>
+                            <td rowspan="3">Category</td>
+                            </tr></table></td>
+                    </tr>
+                </table>
+            </div>*@
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="superModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add Category</h4>
+                </div>
+                <div class="modal-body">
+                    <div ng-click="removeErrors()" class="inlinediv" ng-show="modalError||modalWarning||modalSuccess">
+                        <span ng-show="modalWarning" class="alert alert-warning">
+                            {{modalWarning}}
+
+                        </span>
+                        <span ng-show="modalError" class="alert alert-danger">
+                            {{modalError}}
+                        </span>
+
+                        <span ng-show="modalSuccess" class="alert alert-success">{{modalSuccess}}</span>
+                        <span ng-click="removeErrors()" style="cursor:pointer">X</span>
+                    </div>
+                    <br />
+                    <label for="super"> Super category Name</label>
+                    <input type="text" placeholder="Super Category Name" ng-model="super" class="form-control" name="super" required />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" ng-click="addCategory(super,1,0)">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="catModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add Category</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="inlinediv" ng-show="modalError||modalWarning||modalSuccess||already">
+                        <div ng-show="modalWarning" class="alert alert-warning">
+                            {{modalWarning}}
+
+                        </div>
+                        <div ng-show="modalError" class="alert alert-danger">
+                            {{modalError}}
+                        </div>
+
+                        <div ng-show="modalSuccess" class="alert alert-success">{{modalSuccess}}</div>
+                        <span ng-click="removeErrors()" style="cursor:pointer">X</span>
+                    </div>
+                    <span>Select a super category name</span>
+                    <br />
+                    <select class="categorySelect cate-management" ng-model="filterNumber" ng-options="i.catId as i.name for i in categoryList | filter: { type: 1 }">
+                        <option value="">Super Category</option>
+                    </select>
+                    <br />
+                    <label for="super"> Category Name</label>
+                    <input type="text" placeholder="Category Name" ng-model="cat" class="form-control" name="super" required />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" ng-disabled="!filterNumber" class="btn btn-success" ng-click="addCategory(cat,2,filterNumber)">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="subModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add Category</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="inlinediv" ng-show="modalError||modalWarning||modalSuccess">
+                        <div ng-show="modalWarning" class="alert alert-warning">
+                            {{modalWarning}}
+
+                        </div>
+                        <div ng-show="modalError" class="alert alert-danger">
+                            {{modalError}}
+                        </div>
+
+                        <div ng-show="modalSuccess" class="alert alert-success">{{modalSuccess}}</div>
+                        <span ng-click="removeErrors()" style="cursor:pointer">X</span>
+                    </div>
+                    <span>Select a super Category and Category</span>
+                    <br />
+                    <select class="categorySelect cate-management" ng-model="filtert" ng-options="i.catId as i.name for i in categoryList | filter: { type: 1 }">
+                        <option value="">Super  Category</option>
+                    </select>
+                    <select class="categorySelect cate-management" ng-model="filterSub" ng-options="i.catId as i.name for i in categoryList | CategoryListFilter:filtert">
+                        <option value="">Category</option>
+                    </select>
+                    <br />
+                    <label for="super"> Sub category Name</label>
+                    <input type="text" placeholder="Sub Category Name" ng-model="sub" class="form-control" name="super" required />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" ng-disabled="!filtert||!filterSub" class="btn btn-success" ng-click="addCategory(sub,3,filterSub)">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Category</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="inlinediv" ng-show="modalError||modalWarning||modalSuccess">
+                        <div ng-show="modalWarning" class="alert alert-warning">
+                            {{modalWarning}}
+
+                        </div>
+                        <div ng-show="modalError" class="alert alert-danger">
+                            {{modalError}}
+                        </div>
+
+                        <div ng-show="modalSuccess" class="alert alert-success">{{modalSuccess}}</div>
+                        <span ng-click="removeErrors()" style="cursor:pointer">X</span>
+                    </div>
+                    <div class="col-lg-6 col-md-6 select-container">
+                        <div ng-show="show.type>1">Change Super Category</div>
+                        <select ng-disabled="show.type>2" class="categorySelect cate-management" ng-model="filtert" ng-options="i.catId as i.name for i in categoryList | filter: { type: 1 }" ng-show="show.type>1">
+                            <option value=""> Super Category</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6 col-md-6 select-container">
+                        <div ng-show="show.type>2">Change Category</div>
+                        <select class="categorySelect cate-management" ng-show="show.type>2" ng-model="filterSub" ng-options="i.catId as i.name for i in categoryList | CategoryListFilter:filtert">
+                            <option value="">Category</option>
+
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                    <label for="super">Category Name</label>
+                    <input type="text" placeholder="Category Name" ng-model="show.name" class="form-control" name="super" required />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="reloadNg()">Close</button>
+                    <button type="button" ng-disabled="show.type==1? (show.name==null || show.name=='') : !filtert || !filterSub || (show.name==null || show.name=='')" class="btn btn-success" ng-click="updateCategory(show.name)">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Js{
+    <script src="~/Areas/Admin/AdminScripts/activityManagement.js"></script>
+}

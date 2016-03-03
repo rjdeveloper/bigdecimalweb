@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "UserManagement";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .maxImg {
+        max-height:44px;
+    }
+</style>
+
+<div ng-controller="userManagementCtrl">
+
+    <div class="row">
+        <taalert />
+        <nodata />
+    </div>
+
+    <!-- Table starts here -->
+    <div class="table-responsive-vertical shadow-z-1">
+        <table ng-table="tableParams" class="table table-mc-light-blue table-bordered tablestyle" style="margin-bottom: 0px">
+            <tr ng-repeat="d in $data track by $index ">
+                <td data-title="'S.No.'" style=" vertical-align: middle; width:30px;">
+                    <span ng-bind="d.sno"></span>
+                </td>
+                <td data-title="'User Name'" style=" vertical-align: middle;">
+                    @*<img ng-show="d.profilePic" src="{{d.profilePic|imageFilter}}" alt="..." class="img-circle maxImg">*@
+                    <span ng-bind="d.userName"></span>
+                </td>
+                <td data-title="'Email'" style=" vertical-align: middle;">
+                    <span ng-bind="d.userEmail"></span>
+                </td>
+               
+                <td data-title="'Credits'" style=" vertical-align: middle;">
+                    <span ng-bind="d.credits"></span>
+                </td>
+
+
+                <td data-title="'Actions'" style=" vertical-align: middle;width:20%" class="action-button">
+
+                    <div ng-show="!d.isActive" ng-click="ConfirmBox(d.pkUserId,1)" class="button raised green actionButton">
+                        <div class="center" fit>Activate</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+                    <div ng-show="d.isActive" ng-click="ConfirmBox(d.pkUserId,0)" class="button raised yellow actionButton">
+                        <div class="center" fit>Deactivate</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+
+
+                    <div ng-click="ConfirmBox(d.pkUserId,2)" class="button raised red actionButton">
+                        <div class="center" fit>Delete</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+@section Js{
+    <script src="~/Areas/Admin/AdminScripts/userMgmtCtrl.js"></script>
+}
+

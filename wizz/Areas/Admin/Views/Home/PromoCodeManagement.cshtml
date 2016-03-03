@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "PromoCodeManagement";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<div ng-controller="promoCodeMgmtCtrl">
+    @*<input type="text" sknumber ng-model="abc">*@
+    <button ng-click="addPromoCode()" class="btn btn-info pull-right addpromocode">Add Promo Code</button>
+    <div class="row">
+
+        <taalert />
+    </div>
+    <div class="row">
+
+        <nodata />
+    </div>
+    <!-- Table starts here -->
+    <div class="table-responsive">
+        <table ng-table="tableParams" class="table table-bordered tablestyle" style="margin-bottom: 0px">
+            <tr ng-repeat="d in $data track by $index ">
+                <td data-title="'S.No.'" style=" vertical-align: middle; width:10px">
+                    <span ng-bind="d.sno"></span>
+                </td>
+                <td data-title="'Promo Code'" style=" vertical-align: middle;">
+                    <span ng-bind="d.promoName"></span>
+                </td>
+                <td data-title="'Limit'" style=" vertical-align: middle;">
+                    <span ng-bind="d.counts"></span>
+                </td>
+                <td data-title="'Credits'" style=" vertical-align: middle;">
+                    <span ng-bind="d.discount"></span>
+                </td>
+                <td data-title="'Valid From'" style=" vertical-align: middle;">
+                    <span ng-bind="d.validFrom"></span>
+                </td>
+                <td data-title="'valid To'" style=" vertical-align: middle;">
+                    <span ng-bind="d.validTo"></span>
+                </td>
+                <td data-title="'Description'" style=" vertical-align: middle;">
+                    <span ng-bind="d.description"></span>
+                </td>
+                <td data-title="'Total Times Used'" style=" vertical-align: middle;">
+                    <span ng-bind="d.usageTimes"></span>
+                </td>
+
+                <td data-title="'Actions'" style=" vertical-align: middle;width:30%" >
+                    <div ng-click="editPromo(d)" class="button raised blue actionButton">
+                        <div class="center" fit>Edit</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+                  
+               
+                    <div ng-click="ConfirmBox(d.pkPromoId,2)" class="button raised red actionButton">
+                        <div class="center" fit>Delete</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+
+                    <div ng-show="d.isActive" ng-click="ConfirmBox(d.pkPromoId,0)" class="button raised yellow actionButton">
+                        <div class="center" fit>Deactivate</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+                    <div ng-show="!d.isActive" ng-click="ConfirmBox(d.pkPromoId,1)" class="button raised green actionButton">
+                        <div class="center" fit>Activate</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+
+
+                    
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="promoCodeModal" class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetMsg()"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">{{promoModel.pkPromoId==null?"Add":"Update"}} Promo Code</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-offset-3"></div>
+                        <div class="col-lg-6">
+                            <label class="alert-danger" ng-show="submitted">All fields are required!</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Enter PromoCode</label>
+                            <input maxlength="12" mypromo type="text" ng-model="promoModel.promoName" placeholder="Enter Promo Code" class="form-control" />
+                            <span class="alert-danger" ng-show="(promoModel.promoName.length<4|| promoModel.promoName==null) && submitted">Promo code must be 4-12 characters</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Counts</label>
+                            <input sknumberm maxlength="4" type="text" ng-model="promoModel.counts" placeholder="For how many times" class="form-control" />
+                        </div>
+                    </div>
+                    <div style="margin-top:2%" class="row">
+                        <div class="col-md-6">
+                            <label>Credits</label>
+                            <input sknumber type="text" ng-model="promoModel.discount" maxlength="2" placeholder="Percentage Credits" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Description</label>
+                            <textarea maxlength="100" type="text" ng-model="promoModel.description" placeholder="Description" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div style="margin-top:2%" class="row">
+                        <div class="col-md-6">
+                            <label>Valid From</label>
+
+                            <input readonly="readonly" id="offerFromDate" name="offerFromDate" style="cursor :default; float:none !important;" placeholder="Offer From Date" type="text"
+                                   ng-model="promoModel.validFrom" class="form-control" />
+
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <label>Valid To</label>
+                            <input readonly="readonly" id="offerToDate" name="offerFromDate" style="cursor :default" placeholder="Offer To Date" type="text"
+                                   ng-model="promoModel.validTo" class="form-control" />
+
+                        </div>
+                    </div>
+
+                </div><!-- /.modal-content -->
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="resetMsg()">Close</button>
+                    <button type="button" ng-click="savePrmoCode();" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+
+@section Js{
+    <script src="~/Areas/Admin/AdminScripts/PromoCodeMgmtCtrl.js"></script>
+}

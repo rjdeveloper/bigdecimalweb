@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Class";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="ClassCtrl">
+    <div>
+        <button ng-click="addClass()" class="btn btn-info btn-pop-up addButton">Add Class</button>
+    </div>
+    <div class="row">
+        <taalert />
+    </div>
+    <div class="table-responsive">
+        <table ng-table="tableParams" class="table table-bordered" style="margin-bottom: 0px">
+            <tr ng-repeat="d in $data track by $index ">
+                <td data-title="'S.No.'" style=" vertical-align: middle; width:10px">
+                    <span ng-bind="$index+1"></span>
+                </td>
+                <td data-title="'Class Name'" style=" vertical-align: middle;">
+                    <span ng-bind="d.className"></span>
+                </td>
+                <td data-title="'College'" style=" vertical-align: middle;">
+                    <span>{{d.fkCollegeId|collegesFilter:collegeList}}</span>
+
+                </td>
+                @*<td data-title="'Created Date'" style=" vertical-align: middle;">
+                        <span >{{d.createdDate | date:'M/d/yyyy'}}</span>
+                    </td>*@
+                <td data-title="'Actions'" style=" vertical-align: middle;" class="action-button">
+                    <button class="btn btn-info fLeft" ng-click="editClass(d)">Edit </button>
+                    <button class="btn btn-success fLeft" ng-show="!d.isActive" ng-click="ConfirmBox(d.pkClassId,1)">Activate</button>
+                    <button class="btn btn-warning fLeft" ng-show="d.isActive" ng-click="ConfirmBox(d.pkClassId,0)">Deactivate</button>
+                    <button class="btn btn-danger fLeft" ng-show="!d.isDelete" ng-click="ConfirmBox(d.pkClassId,2)">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="classModal" class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="reset()"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">{{classModel.pkClassId==null?"Add":"Update"}} Class</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Enter Class Name</label>
+                            <input type="text" ng-model="classModel.className" maxlength="20" placeholder="Enter Class Name" class="form-control" />
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" ng-click="reset()">Close</button>
+                        <button type="button" ng-disabled="classModel.className==null||classModel.className==''" ng-click="saveClass()" class="btn btn-primary">Save</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+@section js{
+    <script src="~/Areas/Admin/AdminScripts/ClassCtrl.js"></script>
+}
+
+

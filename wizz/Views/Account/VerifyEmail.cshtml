@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "VerifyEmail";
+    Layout = null;
+}
+
+@if (ViewBag.Result == "false")
+{
+    <div style="text-align: center; padding:225px 0px;">
+        <h2>This link is no more available or you have <br /> already verified your account</h2>
+    </div>
+}
+else
+{
+    <div style="text-align: center; padding:225px 0px;">
+        <h2>Your email has been verified.You can now <br />sign in with your credentials..</h2>
+    </div>
+
+}

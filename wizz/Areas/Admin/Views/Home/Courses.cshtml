@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Courses";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="" ng-controller="courseCtrl">
+    <div ng-http-loader template="~/HtmlTemplates/signup.html"></div>
+    <button ng-click="addPromoCode()" class="btn btn-info pull-right addpromocode">Add Subject</button>
+    <div class="row">
+        <taalert />
+        <nodata />
+    </div>
+    <!-- Table starts here -->
+    <div class="table-responsive tablestyle">
+        <table ng-table="tableParams" class="table table-bordered" style="margin-bottom: 0px">
+            <tr ng-repeat="d in $data track by $index ">
+                <td data-title="'S.No.'" style=" vertical-align: middle; width:10px">
+                    <span ng-bind="d.sno"></span>
+                </td>
+                <td data-title="'Subject Name'" style=" vertical-align: middle;">
+                    <span ng-bind="d.courseName"></span>
+                </td>
+                <td data-title="'Major'" style=" vertical-align: middle;">
+                    <span>{{d.fkClassId|ListFilter:classesList}}</span>
+                </td>
+                <td data-title="'Actions'" style=" vertical-align: middle;width:30%" class="action-button">
+                    <div ng-click="editPromo(d)" class="button raised blue actionButton">
+                        <div class="center" fit>Edit</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+
+                    <div ng-show="!d.isActive" ng-click="ConfirmBox(d.pkCourseId,1)" class="button raised green actionButton">
+                        <div class="center" fit>Activate</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+                    <div ng-show="d.isActive" ng-click="ConfirmBox(d.pkCourseId,0)" class="button raised yellow actionButton">
+                        <div class="center" fit>Deactivate</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+
+
+                    <div ng-click="ConfirmBox(d.pkCourseId,2)" class="button raised red actionButton">
+                        <div class="center" fit>Delete</div>
+                        <paper-ripple fit></paper-ripple>
+                    </div>
+
+
+                  
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="promoCodeModal" class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="resetAll()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">{{courseModel.pkCourseId==null?"Add":"Update"}} Subject</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Major</label>
+                            <select ng-model="courseModel.fkClassId" ng-required="true" class="form-control">
+                                <option value="0">
+                                    Select Majors
+                                </option>
+                                <option ng-selected="courseModel.fkClassId==cl.pkClassId" value="{{cl.pkClassId}}" ng-repeat="cl in classesList">
+                                    {{cl.className}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Enter Subject Name</label>
+                            <input maxlength="40" type="text" ng-model="courseModel.courseName" placeholder="Enter Course Name" class="form-control" />
+                        </div>
+                    
+                    </div>
+                </div><!-- /.modal-content -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="resetAll()">Close</button>
+                    <button type="button" ng-disabled="courseModel.fkClassId==0||courseModel.courseName==null||courseModel.courseName==''" ng-click="saveCourse()" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+
+@section Js{
+    <script src="~/Areas/Admin/AdminScripts/coursesMgmt.js"></script>
+}

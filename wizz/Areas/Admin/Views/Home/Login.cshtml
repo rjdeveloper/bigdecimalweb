@@ -1,0 +1,166 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/cssmine/style.css" type="text/css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width; initial-scale=0.9; maximum-scale=0.9; user-scalable=0;">
+    <script type="text/javascript" src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/common/siteUrl.js"></script>
+    <script type="text/javascript" src="~/Scripts/custom.js"></script>
+    <script src="~/Scripts/Angular/angular.min.js"></script>
+    <style>
+        .alert-danger {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            text-align:center;
+        }
+    </style>
+
+</head>
+<body ng-app="adminLogin" ng-controller="loginCtrl">
+
+    <div class="login">
+        <img src="@Url.Content("~/images/logo.png")" alt="" class="logo" />
+        <div class="LoginCard"></div>
+        <div ng-show="loader" id="loader" class="loader-container">
+            <div class="spinner">
+                <div class="ball"></div>
+                <p>Wizz Tutors</p>
+            </div>
+        </div>
+        <div class="LoginBox">
+            <h4>Login</h4>
+            <h6>Login to complete access to the application</h6>
+            <div class="LoginSec" ng-enter="Login()">
+                <div class="alert alert-danger" ng-show="message">
+                    <span>{{message}}</span>
+                    @*<span class="cross-icon" style="cursor:pointer" ng-click="message=''">X</span>*@
+                </div>
+              
+                <input type="text" ng-keyup="message=null" skemail ng-model="admin.email" class="inputRow animated" placeholder="Email address" />
+
+                <div style="color:red" ng-show="skemail==false && admin.email!=null && !message && submit">
+                    <span>Not valid email address !</span>
+                </div>
+                <input type="password" ng-model="admin.password"  placeholder="Password" maxlength="20" />
+                <input type="submit" class="submitbtn" value="Login" ng-click="Login()">
+
+                @*<button type="button" class="ForgotBtn">Forgot Password?</button>*@
+            </div>  
+
+            <div class="ForgotPasswordSec">
+                <input type="text" name="" value="" placeholder="enter email" />
+                <input type="submit" name="" value="Send" />
+
+                <button type="button" name="" value="" class="CancelBtn">Cancel</button>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+<script>
+   
+    var app = angular.module('adminLogin', []);
+    app.directive('ngEnter', function () {
+        return function (scope, element, attrs) {
+            element.bind("keydown keypress", function (event) {
+                if (event.which === 13) {
+                    scope.$apply(function () {
+                        scope.$eval(attrs.ngEnter);
+                    });
+                    event.preventDefault();
+                }
+            });
+        };
+    }).directive('skemail', function () {
+        return {
+            replace: false,
+            restrict: 'A',
+            require: 'ngModel',
+            link: function (scope, elem, attr) {
+                scope.$watch(attr.ngModel, function (skvalue) {
+                    if (skvalue != null || skvalue === undefined) {
+                        skvalue = skvalue.toLowerCase();
+                    }
+
+                    if (emailpattern.test(skvalue)) {
+
+                        scope.skemail = true;
+                    } else {
+                        scope.skemail = false;
+
+
+                    }
+                });
+            }
+        }
+    })
+    app.controller('loginCtrl', function ($scope, $http) {
+
+        $scope.submit = false;
+        $scope.admin = {
+            email: null,
+            password: null
+        };
+        $scope.message = null;
+
+        function loginValidation()
+        {
+
+            if ($scope.skemail==false || ($scope.admin.password == null || $scope.admin.password == ''))
+            {
+                $scope.message = "All fields are required";
+                return false;
+            }
+
+            else
+            {
+                return true;
+            }
+        }
+
+        $scope.Login=function()
+        {
+            $scope.submit = true;
+            if(loginValidation())
+            {
+                $scope.submit = false;
+                $scope.loader = true;
+                $scope.message = null;
+                $http.post(siteUrl + "/api/AdminApi/Login", $scope.admin).success(function (d) {
+
+
+                    if (d == 'loggedIn') {
+                        window.location.href = siteUrl + '/Admin/Home/Dashboard/';
+                    } else {
+                        $scope.loader = false;
+                        $scope.message = d;
+                    }
+
+                }).error(function (er) {
+                    $scope.message = er;
+                })
+            }
+        }
+
+    })
+</script>
